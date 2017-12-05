@@ -59,22 +59,27 @@ class DNA_seq:
         """A function to make a fasta file. Takes the following arguments:
 
         :param path: The path to write the fasta file to.
+         (WARNING: This will overwrite any existing files with the same path.)
         :param use_orfs: Make a fasta file with orfs?
          If not, make a fasta file with the stored sequence.
+         Will make an empty file if there are no orfs.
         :param identifier: The identifier to use in the fasta header.
          There will be an "_n" appended with the orfs option enabled,
           where n increments with every sequence.
         :return: Nothing
         """
-        with open(path, "r+") as fasta_file:
+        with open(path, "w") as fasta_file:
             if use_orfs:
-                number = 0
-                for orf in self.ORFs:
-                    number += 1
-                    fasta_file.write(">{0}_{1}\n".format(identifier, number))
-                    fasta_file.write(orf + "\n")
+                if self.ORFs:
+                    number = 0
+                    for orf in self.ORFs:
+                        fasta_file.write(">{0}_{1}\n".format(identifier, number))
+                        fasta_file.write(orf + "\n")
+                        number += 1
+                else:
+                    return
             else:
-                fasta_file.write(">" + identifier)
+                fasta_file.write(">" + identifier + "\n")
                 fasta_file.write(self.sequence)
 
 
@@ -82,13 +87,13 @@ class DNA_seq:
 
 #TESTING DATA:
 
-'''
+
 sequences = ['ATGCCATGCTAACCTAA']
 for sequence in sequences:
     contig = DNA_seq(sequence)
-    print(contig.ORFs)
+    contig.make_fasta("/homes/hmiddel/TH6BlastBasics/test.fasta", False, "test")
 
-
+'''
 sequences = ['ATGGATGAGTAG']
 ['ATGGATGAG']
 
