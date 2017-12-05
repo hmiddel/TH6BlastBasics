@@ -108,5 +108,5 @@ class ReadMultifasta:
 
 if __name__ == '__main__':
     test = ReadMultifasta('Examples/tester.fasta')
-    for i in test.contigs:
-        print(i.ORFs)
+    for i, contig in enumerate(test.contigs):
+        contig.make_fasta("test_" + str(i) + ".fasta", False, "Test")
