@@ -52,7 +52,7 @@ class DNA_seq:
         '''
         orfs = []
         for item in re.findall(r'(?=(ATG(?:...)*?)(TAG|TGA|TAA))', self._sequence):
-            orfs.append(DNA_seq(item[0]+item[1]))
+            orfs.append(item[0]+item[1])
         return orfs
 
     def make_fasta(self, path, name):
