@@ -6,7 +6,7 @@ It can be used to find the open reading frames within a DNA sequence
 '''
 
 # METADATA VARIABLES
-__author__ = "Wouter Schuiten"
+__author__ = "Wouter Schuiten and Hylke Middel"
 __status__ = "Ready"
 __version__ = "1.1"
 
@@ -21,7 +21,7 @@ class DNA_seq:
         '''
         self._sequence = None
         self.sequence = sequence
-        self.ORFs = self.ORFfinder(sequence)
+        self.ORFs = self.ORFfinder()
 
     @property
     def sequence(self):
@@ -44,17 +44,20 @@ class DNA_seq:
         except TypeError as errort:
             print('Expected a string, but recieved different type. The following error occured: ', errort)
             exit()
-        
-    @staticmethod
-    def ORFfinder(sequence):
+
+    def ORFfinder(self):
         '''
         Takes a DNA string as input
-        Returns the open reading fromes (start till stopcodon, stopcodon not included) from DNA string
+        Returns the open reading frames (start till stopcodon, stopcodon not included) from DNA string
         '''
         orfs = []
-        for item in re.findall(r'(?=(ATG(?:...)*?)(TAG|TGA|TAA))', sequence):
-            orfs.append(item[0]+item[1])
+        for item in re.findall(r'(?=(ATG(?:...)*?)(TAG|TGA|TAA))', self._sequence):
+            orfs.append(DNA_seq(item[0]+item[1]))
         return orfs
+
+    def make_fasta(self, path, name):
+        with open(path + "/" + name,"w"):
+            pass
 
 
 #TESTING DATA:
