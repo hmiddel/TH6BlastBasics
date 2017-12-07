@@ -1,0 +1,16 @@
+<tool id="multi_fasta_processor" name="Multi Fasta Processing" version="0.1.0">
+  <description>to ORFs in a new fasta file</description>
+  <command interpreter="python">main_input.py -f $input -o $output -H $header</command>
+  <inputs>
+    <param format="fasta" name="input" type="data" label="Input Fasta File"/>
+    <param name="header" type="text" label="The fasta header to use."/>
+  </inputs>
+  <outputs>
+    <data format="fasta" name="output"/>
+  </outputs>
+
+  <help>
+This tool takes a multi fasta file, and returns a multi fasta file with all orfs contained in the input file.
+  </help>
+
+</tool>
