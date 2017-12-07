@@ -107,6 +107,6 @@ class ReadMultifasta:
                 contigs.remove(contig)
 
 if __name__ == '__main__':
-    test = ReadMultifasta('Examples/tester.fasta')
+    test = ReadMultifasta('Examples/subset1.fasta')
     for i, contig in enumerate(test.contigs):
-        contig.make_fasta("test_" + str(i) + ".fasta", False, "Test")
+        contig.make_fasta("Examples/test.fasta", "Test_Contig_" + str(i) + "_ORF", append=(i != 0))

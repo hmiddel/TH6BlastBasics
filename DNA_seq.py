@@ -48,27 +48,33 @@ class DNA_seq:
     def ORFfinder(self):
         '''
         Takes a DNA string as input
-        Returns the open reading frames (start till stopcodon, stopcodon not included) from DNA string
+        Returns the open reading frames (start till stopcodon, stopcodon included) from DNA string
         '''
         orfs = []
         for item in re.findall(r'(?=(ATG(?:...)*?)(TAG|TGA|TAA))', self.sequence):
             orfs.append(item[0]+item[1])
         return orfs
 
-    def make_fasta(self, path, use_orfs, identifier):
+    def make_fasta(self, path, identifier, use_orfs=True, append=False):
         """A function to make a fasta file. Takes the following arguments:
 
         :param path: The path to write the fasta file to.
-         (WARNING: This will overwrite any existing files with the same path.)
+         (WARNING: This will overwrite any existing files with the same path
+         if append is not specified.)
         :param use_orfs: Make a fasta file with orfs?
          If not, make a fasta file with the stored sequence.
          Will make an empty file if there are no orfs.
         :param identifier: The identifier to use in the fasta header.
          There will be an "_n" appended with the orfs option enabled,
           where n increments with every sequence.
+        :param append: Append to an existing fasta file?
         :return: Nothing
         """
-        with open(path, "w") as fasta_file:
+        if append:
+            mode = "a"
+        else:
+            mode = "w"
+        with open(path, mode) as fasta_file:
             if use_orfs:
                 if self.ORFs:
                     number = 0
