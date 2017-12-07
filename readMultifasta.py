@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 Module that makes an object that contains a list of all the contigs in the file
 
@@ -21,7 +23,7 @@ with wrong file:
     The file can not be found.
     Check if the path is correct
     This error comes from readMultifasta.py
-    Examples/teter.fasta is not an existing path
+    Examples/tester.fasta is not an existing path
 
 """
 # IMPORTS
