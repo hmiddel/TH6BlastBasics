@@ -51,7 +51,7 @@ class DNA_seq:
         Returns the open reading frames (start till stopcodon, stopcodon included) from DNA string
         """
         orfs = []
-        for item in re.findall(r'(?=(ATG(?:...)*?)(TAG|TGA|TAA))', self.sequence):
+        for item in re.findall(r'(?=(ATG(?:...)+?)(TAG|TGA|TAA))', self.sequence):
             orfs.append(item[0]+item[1])
         return orfs
 

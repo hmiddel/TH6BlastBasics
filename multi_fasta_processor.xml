@@ -3,7 +3,7 @@
   <command interpreter="python">main_input.py -f $input -o $output -H $header</command>
   <inputs>
     <param format="fasta" name="input" type="data" label="Input Fasta File"/>
-    <param name="header" type="text" label="The fasta header to use."/>
+    <param name="header" type="text" value = "TEMP_HEADER" label="The fasta header to use."/>
   </inputs>
   <outputs>
     <data format="fasta" name="output"/>
