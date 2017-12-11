@@ -1,6 +1,6 @@
 <tool id="multi_fasta_processor" name="Multi Fasta Processing" version="0.1.0">
   <description>to ORFs in a new fasta file</description>
-  <command interpreter="python">main_input.py -f $input -o $output -H $header</command>
+  <command interpreter="python3">main_input.py -f $input -o $output -H $header</command>
   <inputs>
     <param format="fasta" name="input" type="data" label="Input Fasta File"/>
     <param name="header" type="text" value = "TEMP_HEADER" label="The fasta header to use."/>
