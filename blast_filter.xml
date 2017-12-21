@@ -1,0 +1,28 @@
+<tool id="blast_filter_custom" name="Blast Filter" version="0.1.0">
+  <description>to ORFs in a new fasta file</description>
+  <command interpreter="python3">blast_filter.py -I $input -O $output -t $thresholds -c $columns
+    #if $largerthan:
+      -L
+    #end if
+    #if $use_or:
+      -o
+    #end if
+  </command>
+  <inputs>
+    <param format="tabular" name="input" type="data" label="Input Blast File"/>
+    <param name="thresholds" type="text" value = "1e-5" label="The threshold to compare to, as a list of space separated floats."/>
+    <param name="columns" type="text" value = "11" label="The columns to compare with, as a list of space separated integers."/>
+    <param name="largerthan" type="boolean" value="True" label="Compare the columns to see if they are larger than the thresholds
+     (default: check if they are smaller than the thresholds)"/>
+    <param name="use_or" type="boolean" value="True" label="Check if at least one of the columns conforms to the threshold
+     (default: check if all columns conform to the threshold)."/>
+  </inputs>
+  <outputs>
+    <data format="tabular" name="output"/>
+  </outputs>
+
+  <help>
+This tool takes the output of a blast, and filters it on specified data.
+  </help>
+
+</tool>
