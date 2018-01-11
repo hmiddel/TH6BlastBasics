@@ -7,7 +7,7 @@ from readMultifasta import ReadMultifasta
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Processes variant data and puts it in an sql database.")
+        description="Processes a fasta file to find orfs, and puts these orfs in a new fasta file.")
     parser.add_argument('-f', type=str, metavar="fasta_file",
                         help="The fasta file to extract data from.", required=True)
     parser.add_argument('-H', type=str, metavar="header",
