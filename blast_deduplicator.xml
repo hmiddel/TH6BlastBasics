@@ -1,0 +1,16 @@
+<tool id="blast_deduplicator_custom" name="Blast Deduplicator" version="0.1.0">
+  <description>to proteins in a fasta file</description>
+  <command interpreter="python3">blast_deduplicator.py -I $input -O $output
+  </command>
+  <inputs>
+    <param format="tabular" name="input" type="data" label="Input Blast File"/>
+  </inputs>
+  <outputs>
+    <data format="fasta" name="output"/>
+  </outputs>
+
+  <help>
+This tool takes the output of a blast, deduplicates it, and converts it to fasta.
+  </help>
+
+</tool>
